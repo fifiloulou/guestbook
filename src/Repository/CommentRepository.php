@@ -24,6 +24,11 @@ class CommentRepository extends ServiceEntityRepository
         parent::__construct($registry, Comment::class);
     }
 
+    public function findAll()
+    {
+        return $this->findBy([], ['year' => 'ASC', 'city' => 'ASC']);
+    }
+
     public function getCommentPaginator(Conference $conference, int $offset): Paginator
     {
         $query = $this->createQueryBuilder('c')
